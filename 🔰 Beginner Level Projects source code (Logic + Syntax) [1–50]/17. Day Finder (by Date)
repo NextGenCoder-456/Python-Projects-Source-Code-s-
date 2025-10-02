@@ -1,0 +1,10 @@
+import datetime
+
+def find_day(date_str):
+    # Convert string to date object
+    day, month, year = map(int, date_str.split('/'))
+    date_obj = datetime.date(year, month, day)
+    return date_obj.strftime("%A")  # Returns full day name
+
+date_input = input("Enter date (dd/mm/yyyy): ")
+print(f"Day is: {find_day(date_input)}")
