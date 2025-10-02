@@ -1,0 +1,6 @@
+def word_count(text):
+    words = text.strip().split()
+    return len(words)
+
+sentence = input("Enter a sentence: ")
+print(f"Total words: {word_count(sentence)}")
