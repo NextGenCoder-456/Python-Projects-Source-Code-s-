@@ -1,0 +1,5 @@
+name1 = input("Enter your name: ").lower()
+name2 = input("Enter crush's name: ").lower()
+
+score = sum([ord(c) for c in name1 + name2]) % 101
+print(f"💘 Love Score: {score}%")
