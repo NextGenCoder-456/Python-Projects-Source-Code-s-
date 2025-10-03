@@ -1,0 +1,14 @@
+import os
+
+folder = input("Enter folder path: ")
+prefix = input("Enter filename prefix: ")
+
+try:
+    files = os.listdir(folder)
+    for count, filename in enumerate(files):
+        name, ext = os.path.splitext(filename)
+        new_name = f"{prefix}_{count+1}{ext}"
+        os.rename(os.path.join(folder, filename), os.path.join(folder, new_name))
+    print("✅ Files renamed successfully.")
+except Exception as e:
+    print("❌ Error:", e)
