@@ -1,0 +1,19 @@
+import datetime
+import time
+import os
+
+alarm_time = input("Set alarm (HH:MM:SS): ")
+
+print("⏰ Alarm set. Waiting...")
+
+while True:
+    now = datetime.datetime.now().strftime("%H:%M:%S")
+    if now == alarm_time:
+        print("🔔 Wake up! Alarm ringing!")
+        # Play sound (Only works if sound file exists)
+        try:
+            os.system("start alarm.mp3")  # Windows
+        except:
+            print("⚠️ Couldn’t play sound.")
+        break
+    time.sleep(1)
