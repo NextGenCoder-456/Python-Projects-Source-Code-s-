@@ -1,0 +1,15 @@
+import time
+
+test_text = "The quick brown fox jumps over the lazy dog."
+print("Type the following:\n" + test_text)
+input("Press Enter to start...")
+
+start = time.time()
+typed = input("Start typing: ")
+end = time.time()
+
+elapsed = end - start
+words = len(typed.split())
+speed = words / (elapsed / 60)
+
+print(f"⏱ Time: {elapsed:.2f}s, Words: {words}, Speed: {speed:.2f} WPM")
