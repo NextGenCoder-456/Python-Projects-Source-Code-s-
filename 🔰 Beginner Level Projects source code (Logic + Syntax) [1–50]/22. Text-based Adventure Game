@@ -1,0 +1,18 @@
+def start_game():
+    print("🌲 You're in a dark forest. Left or Right?")
+    choice1 = input(">").lower()
+    
+    if choice1 == "left":
+        print("🐍 A snake bites you. Game Over.")
+    elif choice1 == "right":
+        print("🏰 You find a castle. Enter or Run?")
+        choice2 = input(">").lower()
+        
+        if choice2 == "enter":
+            print("🎉 You found the treasure. You win!")
+        else:
+            print("👻 A ghost chases you down. Game Over.")
+    else:
+        print("❌ Invalid choice.")
+
+start_game()
