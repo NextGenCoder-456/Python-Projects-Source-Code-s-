@@ -1,0 +1,20 @@
+def convert_currency(amount, to_currency):
+    # Static rates (e.g., 1 USD = 83 INR)
+    rates = {
+        'usd': 83,
+        'eur': 91,
+        'inr': 1
+    }
+    to_currency = to_currency.lower()
+    if to_currency not in rates:
+        return None
+    return amount * rates[to_currency]
+
+amt = float(input("Amount in INR: "))
+currency = input("Convert to (USD/EUR/INR): ")
+
+converted = convert_currency(amt, currency)
+if converted:
+    print(f"💱 Converted: {converted:.2f} {currency.upper()}")
+else:
+    print("❌ Unsupported currency.")
