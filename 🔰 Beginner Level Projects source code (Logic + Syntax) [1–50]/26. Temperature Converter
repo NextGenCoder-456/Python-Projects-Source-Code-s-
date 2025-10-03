@@ -1,0 +1,16 @@
+def convert_temp(temp, scale):
+    if scale.lower() == 'c':
+        return (temp * 9/5) + 32
+    elif scale.lower() == 'f':
+        return (temp - 32) * 5/9
+    else:
+        return None
+
+temp = float(input("Enter temperature: "))
+scale = input("Convert to (C/F): ")
+
+converted = convert_temp(temp, scale)
+if converted is not None:
+    print(f"🌡 Converted temperature: {converted:.2f}°{scale.upper()}")
+else:
+    print("❌ Invalid scale input.")
