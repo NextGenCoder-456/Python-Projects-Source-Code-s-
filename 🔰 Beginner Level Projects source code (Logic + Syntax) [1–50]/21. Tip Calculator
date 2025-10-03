@@ -1,0 +1,10 @@
+def calculate_tip(bill, tip_percent):
+    tip = bill * (tip_percent / 100)
+    total = bill + tip
+    return tip, total
+
+bill_amount = float(input("Enter bill amount: ₹"))
+tip_percentage = float(input("Enter tip percentage: "))
+
+tip, total = calculate_tip(bill_amount, tip_percentage)
+print(f"💰 Tip: ₹{tip:.2f}, Total Bill: ₹{total:.2f}")
