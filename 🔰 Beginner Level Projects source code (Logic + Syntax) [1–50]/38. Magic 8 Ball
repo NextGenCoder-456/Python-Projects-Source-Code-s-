@@ -1,0 +1,12 @@
+import random
+
+responses = [
+    "Yes, definitely.",
+    "Ask again later.",
+    "No way.",
+    "Absolutely!",
+    "Don't count on it."
+]
+
+input("Ask your question: ")
+print("🎱", random.choice(responses))
