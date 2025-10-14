@@ -1,0 +1,12 @@
+import requests
+
+word = input("Enter a word: ")
+url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+
+res = requests.get(url)
+data = res.json()
+
+if isinstance(data, list):
+    print("Meaning:", data[0]['meanings'][0]['definitions'][0]['definition'])
+else:
+    print("Word not found.")
