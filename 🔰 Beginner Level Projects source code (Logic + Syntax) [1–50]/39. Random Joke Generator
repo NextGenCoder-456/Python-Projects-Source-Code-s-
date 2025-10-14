@@ -1,0 +1,6 @@
+import pyjokes
+
+print("Here's a joke for you:")
+print("😂", pyjokes.get_joke())
+
+Note: ⚠️ Install karo: pip install pyjokes
