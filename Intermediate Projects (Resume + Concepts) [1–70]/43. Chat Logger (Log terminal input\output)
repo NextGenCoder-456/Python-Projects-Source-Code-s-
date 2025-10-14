@@ -1,0 +1,12 @@
+def chat_logger():
+    with open("chat_log.txt", "a") as log:
+        while True:
+            msg = input("You: ")
+            if msg.lower() == "exit":
+                break
+            log.write(f"You: {msg}\n")
+            reply = f"Bot: Echoing '{msg}'\n"
+            print(reply)
+            log.write(reply)
+
+chat_logger()
