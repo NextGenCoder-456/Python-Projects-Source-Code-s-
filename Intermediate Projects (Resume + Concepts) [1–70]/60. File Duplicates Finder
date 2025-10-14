@@ -1,0 +1,18 @@
+import os
+import hashlib
+
+def hash_file(path):
+    with open(path, 'rb') as f:
+        return hashlib.md5(f.read()).hexdigest()
+
+seen = {}
+directory = "your/folder/path"
+
+for filename in os.listdir(directory):
+    path = os.path.join(directory, filename)
+    if os.path.isfile(path):
+        file_hash = hash_file(path)
+        if file_hash in seen:
+            print(f"Duplicate found: {path} == {seen[file_hash]}")
+        else:
+            seen[file_hash] = path
