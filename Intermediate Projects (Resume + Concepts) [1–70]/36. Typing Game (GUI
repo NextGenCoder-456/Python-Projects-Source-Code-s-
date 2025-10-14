@@ -1,0 +1,37 @@
+import tkinter as tk
+import time
+
+words = ["python", "keyboard", "speed", "type", "game"]
+current_word = ""
+start_time = 0
+
+def start_game():
+    global current_word, start_time
+    current_word = random.choice(words)
+    word_label.config(text=current_word)
+    start_time = time.time()
+
+def check_input(event):
+    global start_time
+    typed = entry.get()
+    if typed == current_word:
+        end_time = time.time()
+        result_label.config(text=f"Time: {round(end_time - start_time, 2)}s")
+        start_game()
+
+import random
+root = tk.Tk()
+root.title("Typing Game")
+
+word_label = tk.Label(root, text="", font=("Arial", 24))
+word_label.pack()
+
+entry = tk.Entry(root, font=("Arial", 20))
+entry.pack()
+entry.bind("<Return>", check_input)
+
+result_label = tk.Label(root, text="", font=("Arial", 16))
+result_label.pack()
+
+start_game()
+root.mainloop()
