@@ -1,0 +1,5 @@
+import inflect
+
+p = inflect.engine()
+num = int(input("Enter a number: "))
+print("In words:", p.number_to_words(num))
