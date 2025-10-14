@@ -1,0 +1,7 @@
+from PIL import Image
+
+img = Image.open("your_image.jpg")
+resized = img.resize((300, 300))
+resized.save("resized_image.jpg")
+
+Note: pip install pillow
