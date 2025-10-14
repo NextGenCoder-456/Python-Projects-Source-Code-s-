@@ -1,0 +1,9 @@
+name = input("Your Name: ")
+email = input("Email: ")
+skills = input("Skills (comma-separated): ")
+
+resume = f"Name: {name}\nEmail: {email}\nSkills: {skills}\n"
+with open("resume.txt", "w") as f:
+    f.write(resume)
+
+print("✅ Resume saved as resume.txt")
