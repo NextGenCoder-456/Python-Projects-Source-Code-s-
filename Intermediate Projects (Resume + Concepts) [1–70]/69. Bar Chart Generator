@@ -1,0 +1,8 @@
+import matplotlib.pyplot as plt
+
+data = {"Python": 80, "Java": 60, "C++": 45, "JavaScript": 75}
+plt.bar(data.keys(), data.values(), color='green')
+plt.title("Programming Language Popularity")
+plt.ylabel("Score")
+plt.xlabel("Language")
+plt.show()
