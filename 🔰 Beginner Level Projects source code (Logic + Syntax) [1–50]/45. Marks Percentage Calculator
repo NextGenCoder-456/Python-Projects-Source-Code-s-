@@ -1,0 +1,10 @@
+marks = []
+n = int(input("How many subjects? "))
+for i in range(n):
+    m = float(input(f"Enter marks for subject {i+1}: "))
+    marks.append(m)
+
+total = sum(marks)
+percent = (total / (n * 100)) * 100
+print(f"Total: {total}/{n*100}")
+print(f"Percentage: {percent:.2f}%")
