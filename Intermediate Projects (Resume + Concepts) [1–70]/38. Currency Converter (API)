@@ -1,0 +1,13 @@
+import requests
+
+def convert_currency(from_curr, to_curr, amount):
+    url = f"https://api.exchangerate-api.com/v4/latest/{from_curr}"
+    data = requests.get(url).json()
+
+    if to_curr in data["rates"]:
+        converted = amount * data["rates"][to_curr]
+        print(f"{amount} {from_curr} = {round(converted, 2)} {to_curr}")
+    else:
+        print("Currency not found.")
+
+convert_currency("USD", "INR", 10)
