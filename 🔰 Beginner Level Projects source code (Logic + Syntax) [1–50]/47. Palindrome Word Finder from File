@@ -1,0 +1,7 @@
+with open("words.txt", "r") as f:
+    words = f.read().split()
+
+print("Palindromes found:")
+for word in words:
+    if word == word[::-1]:
+        print(word)
