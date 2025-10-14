@@ -1,0 +1,19 @@
+import tkinter as tk
+
+def add_task():
+    task = entry.get()
+    if task:
+        listbox.insert(tk.END, task)
+        entry.delete(0, tk.END)
+
+app = tk.Tk()
+app.title("To-Do List")
+
+entry = tk.Entry(app, width=30)
+entry.pack()
+
+tk.Button(app, text="Add", command=add_task).pack()
+listbox = tk.Listbox(app)
+listbox.pack()
+
+app.mainloop()
