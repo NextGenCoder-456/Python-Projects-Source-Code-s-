@@ -1,0 +1,11 @@
+books = {
+    "Sci-Fi": ["Dune", "Neuromancer", "Snow Crash"],
+    "Fantasy": ["LOTR", "Harry Potter", "Mistborn"],
+    "Self-Help": ["Atomic Habits", "Deep Work", "The Power of Now"]
+}
+
+genre = input("Enter genre (Sci-Fi/Fantasy/Self-Help): ")
+
+print("📚 Recommended Books:")
+for b in books.get(genre, ["Genre not found."]):
+    print(f"- {b}")
