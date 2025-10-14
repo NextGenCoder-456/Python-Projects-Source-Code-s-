@@ -1,0 +1,15 @@
+import requests
+
+username = input("GitHub username: ")
+repo = input("Repo name: ")
+
+url = f"https://github.com/{username}/{repo}/archive/refs/heads/main.zip"
+
+response = requests.get(url)
+
+if response.status_code == 200:
+    with open(f"{repo}.zip", "wb") as f:
+        f.write(response.content)
+    print(f"✅ Downloaded {repo}.zip")
+else:
+    print("❌ Failed to download.")
