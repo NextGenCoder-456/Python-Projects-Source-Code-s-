@@ -1,0 +1,13 @@
+budget = float(input("Enter your monthly budget: ₹"))
+expenses = []
+
+while True:
+    item = input("Expense item (or 'done'): ")
+    if item.lower() == "done":
+        break
+    amount = float(input("Amount: ₹"))
+    expenses.append((item, amount))
+
+total = sum(amount for _, amount in expenses)
+print(f"\nTotal spent: ₹{total}")
+print(f"Remaining: ₹{budget - total}")
