@@ -1,0 +1,8 @@
+keywords = ["Python", "SQL", "machine learning", "communication"]
+resume = open("resume.txt").read()
+
+for word in keywords:
+    if word.lower() in resume.lower():
+        print(f"✅ Found: {word}")
+    else:
+        print(f"❌ Missing: {word}")
