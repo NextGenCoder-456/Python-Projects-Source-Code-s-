@@ -1,0 +1,10 @@
+while True:
+    command = input(">>> ")
+    if command.lower() in ["exit", "quit"]:
+        break
+    try:
+        result = eval(command)
+        if result is not None:
+            print(result)
+    except Exception as e:
+        print("Error:", e)
