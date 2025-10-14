@@ -1,0 +1,18 @@
+import smtplib
+
+sender = "your_email@gmail.com"
+password = "your_password"
+receiver = input("To: ")
+subject = "Test Email"
+body = "This is a test email sent from Python."
+
+message = f"Subject: {subject}\n\n{body}"
+
+server = smtplib.SMTP("smtp.gmail.com", 587)
+server.starttls()
+server.login(sender, password)
+server.sendmail(sender, receiver, message)
+server.quit()
+print("✅ Email sent.")
+
+Note: For Gmail, allow “less secure apps” or use App Passwords.
