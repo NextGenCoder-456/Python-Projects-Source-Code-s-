@@ -1,0 +1,10 @@
+import time
+
+sec = int(input("Enter time in seconds: "))
+while sec:
+    mins, secs = divmod(sec, 60)
+    print(f"{mins:02d}:{secs:02d}", end="\r")
+    time.sleep(1)
+    sec -= 1
+
+print("⏰ Time’s up!")
