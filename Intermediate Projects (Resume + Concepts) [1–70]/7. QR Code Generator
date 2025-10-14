@@ -1,0 +1,6 @@
+import qrcode
+
+data = input("Enter data for QR: ")
+img = qrcode.make(data)
+img.save("qrcode.png")
+print("✅ QR saved as qrcode.png")
