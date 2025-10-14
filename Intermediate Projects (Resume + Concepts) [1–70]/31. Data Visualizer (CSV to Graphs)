@@ -1,0 +1,26 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def visualize_csv(file_path):
+    data = pd.read_csv(file_path)
+    print("Columns:", data.columns)
+
+    x = input("Enter X-axis column: ")
+    y = input("Enter Y-axis column: ")
+    graph_type = input("Type of graph (line/bar/scatter): ").lower()
+
+    if graph_type == "line":
+        data.plot(x=x, y=y)
+    elif graph_type == "bar":
+        data.plot.bar(x=x, y=y)
+    elif graph_type == "scatter":
+        data.plot.scatter(x=x, y=y)
+    else:
+        print("Invalid graph type")
+        return
+
+    plt.title(f'{y} vs {x}')
+    plt.grid(True)
+    plt.show()
+
+visualize_csv("data.csv")
