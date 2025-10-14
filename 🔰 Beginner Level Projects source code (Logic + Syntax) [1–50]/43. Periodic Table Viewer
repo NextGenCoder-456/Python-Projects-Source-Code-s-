@@ -1,0 +1,13 @@
+elements = {
+    "H": "Hydrogen",
+    "He": "Helium",
+    "Li": "Lithium",
+    "C": "Carbon",
+    "O": "Oxygen",
+    "Fe": "Iron",
+    "Au": "Gold",
+    "Ag": "Silver"
+}
+
+symbol = input("Enter element symbol: ").capitalize()
+print("Element:", elements.get(symbol, "Not found"))
