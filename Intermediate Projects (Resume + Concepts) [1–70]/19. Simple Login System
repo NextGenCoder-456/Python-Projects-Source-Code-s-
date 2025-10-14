@@ -1,0 +1,9 @@
+users = {"admin": "1234"}
+
+username = input("Username: ")
+password = input("Password: ")
+
+if users.get(username) == password:
+    print("✅ Login Successful")
+else:
+    print("❌ Login Failed")
