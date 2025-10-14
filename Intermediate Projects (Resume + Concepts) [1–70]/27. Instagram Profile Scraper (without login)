@@ -1,0 +1,11 @@
+import instaloader
+
+ig = instaloader.Instaloader()
+username = input("Enter Instagram username: ")
+profile = instaloader.Profile.from_username(ig.context, username)
+
+print("Username:", profile.username)
+print("Full Name:", profile.full_name)
+print("Followers:", profile.followers)
+print("Following:", profile.followees)
+print("Bio:", profile.biography)
