@@ -1,0 +1,9 @@
+flashcards = {
+    "OOP": "Object-Oriented Programming",
+    "CPU": "Central Processing Unit",
+    "RAM": "Random Access Memory"
+}
+
+for term, definition in flashcards.items():
+    input(f"What is {term}? (Press Enter to reveal)")
+    print(f"Answer: {definition}\n")
