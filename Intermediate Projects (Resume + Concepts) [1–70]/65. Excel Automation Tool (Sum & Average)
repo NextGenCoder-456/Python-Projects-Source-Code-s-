@@ -1,0 +1,17 @@
+import openpyxl
+
+wb = openpyxl.load_workbook("data.xlsx")
+ws = wb.active
+
+values = [cell.value for cell in ws['A'] if isinstance(cell.value, (int, float))]
+
+total = sum(values)
+average = total / len(values)
+
+ws['B1'] = "Total"
+ws['B2'] = total
+ws['C1'] = "Average"
+ws['C2'] = average
+
+wb.save("data_updated.xlsx")
+print("✅ Excel updated with Total & Average")
