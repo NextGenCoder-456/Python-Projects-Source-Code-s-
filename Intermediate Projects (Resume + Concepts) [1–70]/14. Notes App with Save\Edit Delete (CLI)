@@ -1,0 +1,18 @@
+notes = {}
+
+while True:
+    print("\n1. Add 2. View 3. Delete 4. Exit")
+    choice = input("Enter: ")
+
+    if choice == '1':
+        title = input("Note Title: ")
+        content = input("Note Content: ")
+        notes[title] = content
+    elif choice == '2':
+        for title, content in notes.items():
+            print(f"{title}: {content}")
+    elif choice == '3':
+        title = input("Title to delete: ")
+        notes.pop(title, None)
+    else:
+        break
