@@ -1,1 +1,15 @@
+import socket
 
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(('localhost', 5555))
+server.listen(1)
+print("Server listening...")
+
+client, addr = server.accept()
+print(f"Connected with {addr}")
+
+while True:
+    msg = client.recv(1024).decode()
+    print("Client:", msg)
+    reply = input("You: ")
+    client.send(reply.encode())
