@@ -1,0 +1,12 @@
+import socket
+
+s = socket.socket()
+s.connect(('localhost', 9999))
+
+with open('received_file.txt', 'wb') as f:
+    data = s.recv(1024)
+    while data:
+        f.write(data)
+        data = s.recv(1024)
+
+print("File received.")
