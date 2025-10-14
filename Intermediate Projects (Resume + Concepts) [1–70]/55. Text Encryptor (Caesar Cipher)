@@ -1,0 +1,13 @@
+def caesar_encrypt(text, shift):
+    encrypted = ""
+    for char in text:
+        if char.isalpha():
+            base = 65 if char.isupper() else 97
+            encrypted += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            encrypted += char
+    return encrypted
+
+msg = input("Enter message: ")
+shift = int(input("Shift: "))
+print("Encrypted:", caesar_encrypt(msg, shift))
