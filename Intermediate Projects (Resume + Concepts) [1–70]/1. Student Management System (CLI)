@@ -1,0 +1,23 @@
+students = []
+
+def add_student():
+    name = input("Enter name: ")
+    roll = input("Enter roll number: ")
+    students.append({"name": name, "roll": roll})
+    print("✅ Student added!")
+
+def view_students():
+    for s in students:
+        print(f"Name: {s['name']}, Roll: {s['roll']}")
+
+while True:
+    print("\n1. Add Student\n2. View Students\n3. Exit")
+    ch = input("Enter choice: ")
+    if ch == "1":
+        add_student()
+    elif ch == "2":
+        view_students()
+    elif ch == "3":
+        break
+    else:
+        print("❌ Invalid choice.")
