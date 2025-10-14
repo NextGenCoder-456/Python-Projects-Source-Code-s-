@@ -1,0 +1,13 @@
+import random
+
+words = ["python", "school", "banana", "developer", "keyboard"]
+word = random.choice(words)
+hidden = ["_"] * len(word)
+
+while "_" in hidden:
+    print(" ".join(hidden))
+    guess = input("Guess a letter: ").lower()
+    for i, char in enumerate(word):
+        if char == guess:
+            hidden[i] = guess
+print(f"You guessed it! The word was '{word}'. 🎉")
