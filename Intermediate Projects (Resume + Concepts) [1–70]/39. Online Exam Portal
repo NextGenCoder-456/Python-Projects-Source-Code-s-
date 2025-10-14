@@ -1,0 +1,13 @@
+questions = {
+    "What is 2 + 2?": "4",
+    "Capital of India?": "Delhi",
+    "Python creator?": "Guido van Rossum"
+}
+
+score = 0
+for q, a in questions.items():
+    ans = input(q + " ")
+    if ans.strip().lower() == a.lower():
+        score += 1
+
+print(f"You scored {score}/{len(questions)}")
