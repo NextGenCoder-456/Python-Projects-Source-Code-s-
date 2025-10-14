@@ -1,0 +1,6 @@
+noun = input("Enter a noun: ")
+verb = input("Enter a verb: ")
+adj = input("Enter an adjective: ")
+place = input("Enter a place: ")
+
+print(f"One day, a {adj} {noun} decided to {verb} at {place}.")
