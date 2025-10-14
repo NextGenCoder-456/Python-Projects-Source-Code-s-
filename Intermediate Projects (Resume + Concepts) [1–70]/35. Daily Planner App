@@ -1,0 +1,22 @@
+tasks = []
+
+def add_task(task):
+    tasks.append(task)
+
+def show_tasks():
+    if not tasks:
+        print("No tasks today.")
+    else:
+        print("Your Tasks:")
+        for idx, task in enumerate(tasks, 1):
+            print(f"{idx}. {task}")
+
+while True:
+    action = input("Add/View/Quit: ").lower()
+    if action == "add":
+        task = input("Enter task: ")
+        add_task(task)
+    elif action == "view":
+        show_tasks()
+    elif action == "quit":
+        break
