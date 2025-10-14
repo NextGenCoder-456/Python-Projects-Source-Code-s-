@@ -1,0 +1,11 @@
+from gensim.summarization import summarize
+
+text = """
+Artificial intelligence (AI) is the simulation of human intelligence processes by machines, 
+especially computer systems. These processes include learning, reasoning, and self-correction.
+"""
+
+summary = summarize(text, ratio=0.4)
+print("Summary:\n", summary)
+
+Note: 🔧 Install gensim: pip install gensim
