@@ -1,0 +1,8 @@
+import os
+
+file = input("Enter file path: ")
+if os.path.exists(file):
+    size = os.path.getsize(file)
+    print(f"File size: {size / 1024:.2f} KB")
+else:
+    print("File not found.")
