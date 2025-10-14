@@ -1,0 +1,13 @@
+import cv2
+
+def capture_image():
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+
+    if ret:
+        cv2.imwrite("snapshot.jpg", frame)
+        print("Image saved as snapshot.jpg")
+    cap.release()
+    cv2.destroyAllWindows()
+
+capture_image()
