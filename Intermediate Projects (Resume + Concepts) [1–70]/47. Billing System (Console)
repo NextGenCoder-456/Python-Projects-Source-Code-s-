@@ -1,0 +1,22 @@
+items = {
+    "apple": 30,
+    "banana": 10,
+    "milk": 50,
+    "bread": 25
+}
+
+bill = 0
+
+while True:
+    item = input("Enter item (or 'done'): ").lower()
+    if item == 'done':
+        break
+    qty = int(input("Quantity: "))
+    if item in items:
+        cost = items[item] * qty
+        print(f"{item.title()} x {qty} = ₹{cost}")
+        bill += cost
+    else:
+        print("Item not found!")
+
+print(f"Total Bill: ₹{bill}")
