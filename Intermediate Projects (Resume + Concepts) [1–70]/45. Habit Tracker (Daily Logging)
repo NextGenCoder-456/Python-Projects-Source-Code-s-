@@ -1,0 +1,10 @@
+import datetime
+
+def log_habit(habit):
+    today = datetime.date.today().isoformat()
+    with open("habit_log.txt", "a") as file:
+        file.write(f"{today}: {habit}\n")
+    print("Habit logged!")
+
+habit = input("What habit did you complete today? ")
+log_habit(habit)
