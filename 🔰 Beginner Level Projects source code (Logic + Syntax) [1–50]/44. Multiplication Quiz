@@ -1,0 +1,13 @@
+import random
+
+score = 0
+for _ in range(5):
+    a = random.randint(1, 10)
+    b = random.randint(1, 10)
+    ans = int(input(f"{a} x {b} = "))
+    if ans == a * b:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print(f"❌ Wrong! Answer is {a * b}")
+print("Final Score:", score)
