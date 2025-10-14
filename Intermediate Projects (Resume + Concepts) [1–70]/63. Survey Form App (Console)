@@ -1,0 +1,10 @@
+responses = {}
+
+questions = ["Name?", "Age?", "Favorite Language?", "Do you code daily? (yes/no)"]
+
+for q in questions:
+    responses[q] = input(q + " ")
+
+print("\n🎯 Survey Completed:")
+for k, v in responses.items():
+    print(f"{k} --> {v}")
