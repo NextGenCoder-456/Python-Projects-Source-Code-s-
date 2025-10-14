@@ -1,0 +1,29 @@
+from cryptography.fernet import Fernet
+
+# Generate and save key once (run only once)
+# key = Fernet.generate_key()
+# with open("key.key", "wb") as key_file:
+#     key_file.write(key)
+
+# Load the key
+with open("key.key", "rb") as key_file:
+    key = key_file.read()
+
+fernet = Fernet(key)
+
+def encrypt_file(filename):
+    with open(filename, 'rb') as f:
+        data = f.read()
+    encrypted = fernet.encrypt(data)
+    with open(filename + ".enc", 'wb') as f:
+        f.write(encrypted)
+
+def decrypt_file(filename):
+    with open(filename, 'rb') as f:
+        data = f.read()
+    decrypted = fernet.decrypt(data)
+    with open("decrypted_" + filename, 'wb') as f:
+        f.write(decrypted)
+
+# encrypt_file("sample.txt")
+# decrypt_file("sample.txt.enc")
