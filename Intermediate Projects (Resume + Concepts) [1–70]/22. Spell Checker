@@ -1,0 +1,9 @@
+from spellchecker import SpellChecker
+
+spell = SpellChecker()
+text = input("Enter text: ")
+misspelled = spell.unknown(text.split())
+
+print("Misspelled words and suggestions:")
+for word in misspelled:
+    print(f"{word} -> {spell.correction(word)}")
