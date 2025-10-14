@@ -1,0 +1,25 @@
+import tkinter as tk
+import time
+
+def start_timer():
+    work_time = 25 * 60  # 25 minutes
+    while work_time > 0:
+        mins, secs = divmod(work_time, 60)
+        timer_display.set(f"{mins:02d}:{secs:02d}")
+        root.update()
+        time.sleep(1)
+        work_time -= 1
+
+root = tk.Tk()
+root.title("Pomodoro Timer")
+
+timer_display = tk.StringVar()
+timer_display.set("25:00")
+
+label = tk.Label(root, textvariable=timer_display, font=("Helvetica", 48))
+label.pack(pady=20)
+
+start_btn = tk.Button(root, text="Start", command=start_timer)
+start_btn.pack()
+
+root.mainloop()
