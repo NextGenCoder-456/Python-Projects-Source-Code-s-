@@ -1,0 +1,17 @@
+import socket
+
+s = socket.socket()
+s.bind(('localhost', 9999))
+s.listen(1)
+print("Waiting for connection...")
+
+conn, addr = s.accept()
+print("Connected with", addr)
+
+filename = 'file.txt'
+with open(filename, 'rb') as f:
+    data = f.read()
+    conn.sendall(data)
+
+print("File sent.")
+conn.close()
