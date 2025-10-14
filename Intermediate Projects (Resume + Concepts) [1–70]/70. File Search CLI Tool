@@ -1,0 +1,14 @@
+import os
+
+folder = input("Enter folder path: ")
+filename = input("Enter filename to search: ")
+
+found = False
+for root, _, files in os.walk(folder):
+    if filename in files:
+        print(f"✅ Found at: {os.path.join(root, filename)}")
+        found = True
+        break
+
+if not found:
+    print("❌ File not found.")
