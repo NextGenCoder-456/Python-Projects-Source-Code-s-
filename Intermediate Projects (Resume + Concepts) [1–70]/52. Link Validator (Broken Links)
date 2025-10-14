@@ -1,0 +1,10 @@
+import requests
+
+urls = ["https://google.com", "https://nonexistent.url"]
+
+for url in urls:
+    try:
+        response = requests.head(url, allow_redirects=True)
+        print(f"{url} --> {response.status_code}")
+    except requests.RequestException:
+        print(f"{url} --> Broken Link ❌")
