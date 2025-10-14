@@ -6,3 +6,8 @@ merger.append("file2.pdf")
 merger.write("merged.pdf")
 merger.close()
 print("✅ PDFs merged as 'merged.pdf'")
+
+Note: Splitter and more features available with PdfReader.
+
+Install with: pip install PyPDF2
+
