@@ -1,0 +1,11 @@
+import pyautogui
+import time
+
+text = "Auto typing with Python is fun!"  # Message to type
+delay = 0.1  # Delay between characters
+
+time.sleep(5)  # Wait 5 seconds to switch window
+
+for char in text:
+    pyautogui.write(char)
+    time.sleep(delay)
