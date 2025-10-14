@@ -1,0 +1,13 @@
+import pyperclip
+import time
+
+clipboard_history = []
+
+print("📋 Clipboard manager started. Ctrl+C something!")
+
+while True:
+    current = pyperclip.paste()
+    if clipboard_history == [] or current != clipboard_history[-1]:
+        clipboard_history.append(current)
+        print(f"Copied: {current}")
+    time.sleep(1)
