@@ -1,0 +1,16 @@
+import requests
+
+def get_stock_price(symbol):
+    api_key = "demo"  # Replace with your Alpha Vantage or real API key
+    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    try:
+        price = data["Global Quote"]["05. price"]
+        print(f"Current price of {symbol}: ${price}")
+    except:
+        print("Failed to fetch data.")
+
+get_stock_price("AAPL")
