@@ -1,0 +1,12 @@
+import requests
+
+city = input("Enter city: ")
+api_key = "your_api_key_here"  # 🔐 Replace with your OpenWeatherMap API key
+
+url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+data = requests.get(url).json()
+
+if data.get("main"):
+    print(f"🌡️ Temp: {data['main']['temp']}°C")
+else:
+    print("❌ City not found.")
