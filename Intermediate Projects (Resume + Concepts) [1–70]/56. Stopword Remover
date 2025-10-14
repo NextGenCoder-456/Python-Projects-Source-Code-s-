@@ -1,0 +1,12 @@
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
+text = "This is a simple sentence that contains stopwords."
+words = word_tokenize(text)
+
+filtered = [word for word in words if word.lower() not in stopwords.words('english')]
+print("Filtered Text:", " ".join(filtered))
