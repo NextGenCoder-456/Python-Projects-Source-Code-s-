@@ -1,0 +1,24 @@
+import random
+
+questions = [
+    {"question": "What is the capital of France?", "options": ["Paris", "Berlin", "Rome", "Madrid"], "answer": "Paris"},
+    {"question": "What is 9 * 9?", "options": ["81", "72", "99", "108"], "answer": "81"},
+    {"question": "Who wrote 'Hamlet'?", "options": ["Shakespeare", "Charles Dickens", "Tagore", "Homer"], "answer": "Shakespeare"},
+]
+
+def quiz_game():
+    score = 0
+    random.shuffle(questions)
+    for q in questions:
+        print("\nQ:", q["question"])
+        for i, opt in enumerate(q["options"]):
+            print(f"{i+1}. {opt}")
+        ans = input("Enter your choice (1-4): ")
+        if q["options"][int(ans)-1] == q["answer"]:
+            print("✅ Correct!")
+            score += 1
+        else:
+            print("❌ Wrong! Correct answer:", q["answer"])
+    print(f"\nYour final score: {score}/{len(questions)}")
+
+quiz_game()
