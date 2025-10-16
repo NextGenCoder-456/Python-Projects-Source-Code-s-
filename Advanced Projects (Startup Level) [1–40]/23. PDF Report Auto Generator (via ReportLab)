@@ -1,0 +1,12 @@
+from reportlab.pdfgen import canvas
+
+def generate_pdf_report(name, marks):
+    c = canvas.Canvas("report.pdf")
+    c.setFont("Helvetica", 14)
+    c.drawString(100, 750, "Student Report")
+    c.drawString(100, 700, f"Name: {name}")
+    c.drawString(100, 675, f"Marks: {marks}")
+    c.save()
+    print("PDF generated: report.pdf")
+
+generate_pdf_report("Ankush", 98)
