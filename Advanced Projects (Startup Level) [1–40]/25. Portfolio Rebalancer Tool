@@ -1,0 +1,12 @@
+def rebalance_portfolio(current, target):
+    total = sum(current.values())
+    rebalanced = {}
+    for stock, target_percent in target.items():
+        rebalanced[stock] = round((target_percent / 100) * total, 2)
+    return rebalanced
+
+current_portfolio = {'AAPL': 5000, 'GOOG': 3000, 'TSLA': 2000}
+target_allocation = {'AAPL': 40, 'GOOG': 40, 'TSLA': 20}
+
+new_allocations = rebalance_portfolio(current_portfolio, target_allocation)
+print("Rebalanced Portfolio:", new_allocations)
