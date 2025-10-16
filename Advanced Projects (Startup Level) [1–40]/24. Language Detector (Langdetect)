@@ -1,0 +1,7 @@
+from langdetect import detect
+
+text = input("Enter text to detect language: ")
+language = detect(text)
+print("Detected Language:", language)
+
+Note:  Install with: pip install langdete
