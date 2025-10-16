@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+</head>
+<body>
+  <input id="msg" placeholder="Type...">
+  <button onclick="sendMsg()">Send</button>
+  <ul id="chat"></ul>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+  <script>
+    var socket = io();
+    socket.on('message', msg => {
+      var li = document.createElement("li");
+      li.innerText = msg;
+      document.getElementById("chat").appendChild(li);
+    });
+
+    function sendMsg() {
+      let msg = document.getElementById('msg').value;
+      socket.send(msg);
+      document.getElementById('msg').value = '';
+    }
+  </script>
+</body>
+</html>
