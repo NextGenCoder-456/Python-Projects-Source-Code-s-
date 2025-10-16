@@ -1,0 +1,13 @@
+import yfinance as yf
+
+stocks = ['AAPL', 'GOOG', 'TSLA']
+
+def analyze_portfolio(stocks):
+    for ticker in stocks:
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period="5d")
+        print(f"Stock: {ticker}")
+        print(hist[['Close']])
+        print("-" * 40)
+
+analyze_portfolio(stocks)
