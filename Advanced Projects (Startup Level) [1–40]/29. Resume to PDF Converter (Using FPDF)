@@ -1,0 +1,14 @@
+from fpdf import FPDF
+
+def create_resume(name, summary, skills):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, txt="Resume", ln=True, align='C')
+    pdf.cell(200, 10, txt=f"Name: {name}", ln=True)
+    pdf.multi_cell(200, 10, txt=f"Summary: {summary}")
+    pdf.multi_cell(200, 10, txt=f"Skills: {', '.join(skills)}")
+    pdf.output("resume.pdf")
+    print("Resume saved as resume.pdf")
+
+create_resume("Ankush Kumar", "Python dev", ["Python", "Flask", "ML"])
