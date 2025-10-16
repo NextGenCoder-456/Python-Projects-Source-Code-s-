@@ -1,0 +1,58 @@
+import pygame, random
+
+pygame.init()
+WIDTH, HEIGHT = 500, 500
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
+
+snake = [(100, 100)]
+snake_dir = (20, 0)
+food = (300, 300)
+score = 0
+font = pygame.font.SysFont(None, 30)
+
+def draw():
+    win.fill((0, 0, 0))
+    for seg in snake:
+        pygame.draw.rect(win, (0, 255, 0), (*seg, 20, 20))
+    pygame.draw.rect(win, (255, 0, 0), (*food, 20, 20))
+    score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+    win.blit(score_text, (10, 10))
+    pygame.display.update()
+
+def move_snake():
+    global food, score
+    new_head = (snake[0][0] + snake_dir[0], snake[0][1] + snake_dir[1])
+    if new_head == food:
+        snake.insert(0, new_head)
+        food = (random.randint(0, 24) * 20, random.randint(0, 24) * 20)
+        score += 1
+    else:
+        snake.insert(0, new_head)
+        snake.pop()
+
+def main():
+    global snake_dir
+    run = True
+    while run:
+        pygame.time.delay(100)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: run = False
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP] and snake_dir != (0, 20): snake_dir = (0, -20)
+        if keys[pygame.K_DOWN] and snake_dir != (0, -20): snake_dir = (0, 20)
+        if keys[pygame.K_LEFT] and snake_dir != (20, 0): snake_dir = (-20, 0)
+        if keys[pygame.K_RIGHT] and snake_dir != (-20, 0): snake_dir = (20, 0)
+
+        move_snake()
+
+        if (snake[0] in snake[1:] or
+            snake[0][0] < 0 or snake[0][1] < 0 or
+            snake[0][0] >= WIDTH or snake[0][1] >= HEIGHT):
+            run = False
+
+        draw()
+
+    pygame.quit()
+
+main()
