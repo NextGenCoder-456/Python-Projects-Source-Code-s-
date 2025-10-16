@@ -1,0 +1,69 @@
+import pygame
+
+pygame.init()
+WIDTH, HEIGHT = 700, 500
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Pong Game")
+
+WHITE = (255, 255, 255)
+BALL_RADIUS = 10
+PADDLE_WIDTH, PADDLE_HEIGHT = 15, 100
+
+ball = pygame.Rect(WIDTH//2, HEIGHT//2, BALL_RADIUS, BALL_RADIUS)
+player = pygame.Rect(WIDTH - 20, HEIGHT//2 - 50, PADDLE_WIDTH, PADDLE_HEIGHT)
+opponent = pygame.Rect(5, HEIGHT//2 - 50, PADDLE_WIDTH, PADDLE_HEIGHT)
+
+ball_speed = [4, 4]
+player_speed = 0
+opponent_speed = 4
+clock = pygame.time.Clock()
+font = pygame.font.SysFont(None, 40)
+
+def draw():
+    win.fill((0, 0, 0))
+    pygame.draw.rect(win, WHITE, player)
+    pygame.draw.rect(win, WHITE, opponent)
+    pygame.draw.ellipse(win, WHITE, ball)
+    pygame.draw.aaline(win, WHITE, (WIDTH//2, 0), (WIDTH//2, HEIGHT))
+    pygame.display.flip()
+
+def move_opponent():
+    if opponent.centery < ball.centery:
+        opponent.y += opponent_speed
+    elif opponent.centery > ball.centery:
+        opponent.y -= opponent_speed
+
+def move_ball():
+    global ball_speed
+    ball.x += ball_speed[0]
+    ball.y += ball_speed[1]
+
+    if ball.top <= 0 or ball.bottom >= HEIGHT:
+        ball_speed[1] *= -1
+
+    if ball.colliderect(player) or ball.colliderect(opponent):
+        ball_speed[0] *= -1
+
+def main():
+    global player_speed
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP: player_speed = -6
+                if event.key == pygame.K_DOWN: player_speed = 6
+            if event.type == pygame.KEYUP:
+                if event.key in [pygame.K_UP, pygame.K_DOWN]: player_speed = 0
+
+        player.y += player_speed
+        player.y = max(0, min(player.y, HEIGHT - PADDLE_HEIGHT))
+
+        move_opponent()
+        move_ball()
+        draw()
+        clock.tick(60)
+
+    pygame.quit()
+
+main()
