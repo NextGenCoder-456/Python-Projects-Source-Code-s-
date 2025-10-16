@@ -1,0 +1,29 @@
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(__name__)
+
+products = [
+    {"id": 1, "name": "T-shirt", "price": 500},
+    {"id": 2, "name": "Shoes", "price": 1200}
+]
+
+cart = []
+
+@app.route('/')
+def home():
+    return render_template("home.html", products=products)
+
+@app.route('/add_to_cart/<int:id>')
+def add_to_cart(id):
+    product = next((item for item in products if item["id"] == id), None)
+    if product:
+        cart.append(product)
+    return redirect(url_for('cart_view'))
+
+@app.route('/cart')
+def cart_view():
+    total = sum(item['price'] for item in cart)
+    return render_template("cart.html", cart=cart, total=total)
+
+if __name__ == '__main__':
+    app.run(debug=True)
