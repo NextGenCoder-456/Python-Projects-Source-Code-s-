@@ -1,0 +1,12 @@
+from PIL import Image, ImageEnhance, ImageFilter
+
+img = Image.open("photo.jpg")
+
+# Apply filters
+blurred = img.filter(ImageFilter.GaussianBlur(2))
+sharp = ImageEnhance.Sharpness(img).enhance(2.0)
+bright = ImageEnhance.Brightness(img).enhance(1.5)
+
+blurred.save("blurred.jpg")
+sharp.save("sharpened.jpg")
+bright.save("bright.jpg")
