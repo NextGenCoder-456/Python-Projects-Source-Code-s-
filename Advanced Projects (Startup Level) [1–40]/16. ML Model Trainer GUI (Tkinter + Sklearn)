@@ -1,0 +1,20 @@
+import tkinter as tk
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+def train_model():
+    iris = load_iris()
+    X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target)
+    model = RandomForestClassifier()
+    model.fit(X_train, y_train)
+    acc = accuracy_score(y_test, model.predict(X_test))
+    label_result.config(text=f"Accuracy: {acc:.2f}")
+
+root = tk.Tk()
+root.title("ML Trainer")
+tk.Button(root, text="Train Iris Model", command=train_model).pack()
+label_result = tk.Label(root, text="")
+label_result.pack()
+root.mainloop()
