@@ -1,0 +1,16 @@
+import csv
+
+def add_job(title, company, status):
+    with open("jobs.csv", mode="a", newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([title, company, status])
+    print("Job added!")
+
+def show_jobs():
+    with open("jobs.csv", mode="r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(" | ".join(row))
+
+add_job("Software Engineer", "Google", "Applied")
+show_jobs()
