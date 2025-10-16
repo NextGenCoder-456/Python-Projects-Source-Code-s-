@@ -1,0 +1,19 @@
+import requests
+
+def get_top_posts(subreddit, limit=5):
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit={limit}"
+    headers = {'User-agent': 'Mozilla/5.0'}
+    res = requests.get(url, headers=headers)
+
+    if res.status_code != 200:
+        print("Subreddit not found!")
+        return
+
+    posts = res.json()['data']['children']
+    for post in posts:
+        print(f"\nTitle: {post['data']['title']}")
+        print(f"Score: {post['data']['score']}")
+        print(f"Link: https://reddit.com{post['data']['permalink']}")
+
+subreddit = input("Enter subreddit name: ")
+get_top_posts(subreddit)
