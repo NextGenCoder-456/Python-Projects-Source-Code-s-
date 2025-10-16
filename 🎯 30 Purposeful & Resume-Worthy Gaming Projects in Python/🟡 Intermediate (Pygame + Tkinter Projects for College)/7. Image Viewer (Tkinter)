@@ -1,0 +1,33 @@
+from tkinter import *
+from PIL import ImageTk, Image
+import os
+
+root = Tk()
+root.title("Image Viewer")
+
+img_files = [f for f in os.listdir() if f.endswith(('.png', '.jpg', '.jpeg'))]
+img_index = 0
+
+def update_img():
+    img = ImageTk.PhotoImage(Image.open(img_files[img_index]).resize((300, 300)))
+    label.config(image=img)
+    label.image = img
+
+def next_img():
+    global img_index
+    img_index = (img_index + 1) % len(img_files)
+    update_img()
+
+def prev_img():
+    global img_index
+    img_index = (img_index - 1) % len(img_files)
+    update_img()
+
+label = Label(root)
+label.pack()
+
+Button(root, text="Previous", command=prev_img).pack(side=LEFT)
+Button(root, text="Next", command=next_img).pack(side=RIGHT)
+
+update_img()
+root.mainloop()
