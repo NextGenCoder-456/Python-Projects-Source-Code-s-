@@ -1,0 +1,57 @@
+import os
+import math
+from collections import Counter
+
+def get_text_files(folder):
+    return [f for f in os.listdir(folder) if f.endswith('.txt')]
+
+def read_file(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def tokenize(text):
+    return text.lower().split()
+
+def compute_tf(doc_tokens):
+    tf = Counter(doc_tokens)
+    total = len(doc_tokens)
+    return {word: count / total for word, count in tf.items()}
+
+def compute_idf(all_tokens):
+    N = len(all_tokens)
+    idf = {}
+    all_words = set(word for doc in all_tokens for word in doc)
+    for word in all_words:
+        containing = sum(word in doc for doc in all_tokens)
+        idf[word] = math.log(N / (1 + containing))
+    return idf
+
+def compute_tfidf(tf, idf):
+    return {word: tf.get(word, 0) * idf[word] for word in idf}
+
+def cosine_sim(a, b):
+    dot = sum(a.get(x, 0) * b.get(x, 0) for x in a)
+    norm_a = math.sqrt(sum(v ** 2 for v in a.values()))
+    norm_b = math.sqrt(sum(v ** 2 for v in b.values()))
+    return dot / (norm_a * norm_b + 1e-5)
+
+def search(query, folder='docs'):
+    files = get_text_files(folder)
+    docs = [tokenize(read_file(os.path.join(folder, f))) for f in files]
+    tf = [compute_tf(doc) for doc in docs]
+    idf = compute_idf(docs)
+    tfidf = [compute_tfidf(t, idf) for t in tf]
+
+    q_tokens = tokenize(query)
+    q_tf = compute_tf(q_tokens)
+    q_vec = compute_tfidf(q_tf, idf)
+
+    sims = [cosine_sim(q_vec, doc_vec) for doc_vec in tfidf]
+    ranked = sorted(zip(files, sims), key=lambda x: x[1], reverse=True)
+    
+    print("🔍 Search Results:")
+    for file, score in ranked[:5]:
+        print(f'{file} → Score: {score:.4f}')
+
+# Example usage
+search("machine learning artificial intelligence")
