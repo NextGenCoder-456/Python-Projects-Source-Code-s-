@@ -1,0 +1,4 @@
+# commands to set up:
+django-admin startproject notes_project
+cd notes_project
+python manage.py startapp notes
