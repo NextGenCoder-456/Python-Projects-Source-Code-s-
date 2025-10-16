@@ -1,0 +1,11 @@
+<!doctype html><html><body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+var socket = io();
+socket.on('message', d=>console.log(d.msg));
+function join(){ socket.emit('join',{name:document.getElementById('name').value}); }
+function sendAns(){ socket.emit('answer',{name:document.getElementById('name').value,qidx:0,ans:document.getElementById('ans').value}); }
+</script>
+Name: <input id="name"/><button onclick="join()">Join</button><br/>
+Answer: <input id="ans"/><button onclick="sendAns()">Send</button>
+</body></html>
