@@ -1,0 +1,14 @@
+import random
+import string
+from PIL import Image, ImageDraw, ImageFont
+
+def generate_captcha():
+    text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    img = Image.new('RGB', (150, 50), color=(255, 255, 255))
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.load_default()
+    draw.text((10, 10), text, font=font, fill=(0, 0, 0))
+    img.save("captcha.png")
+    print("Captcha saved as captcha.png")
+
+generate_captcha()
