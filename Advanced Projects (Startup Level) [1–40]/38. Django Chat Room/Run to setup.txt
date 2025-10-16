@@ -1,0 +1,4 @@
+# Run to set up:
+django-admin startproject chatproject
+cd chatproject
+python manage.py startapp chat
