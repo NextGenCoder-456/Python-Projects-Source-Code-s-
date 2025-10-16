@@ -1,0 +1,22 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+blogs = [
+    "Python for data science and ML.",
+    "How to build web apps with Flask.",
+    "Understanding neural networks.",
+    "Top 10 coding interview tips.",
+    "Beginner’s guide to machine learning."
+]
+
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(blogs)
+
+# Check similarity with 0th blog
+cosine_similarities = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix)
+similarities = cosine_similarities[0]
+
+# Print recommendations
+print("Recommended blogs:")
+for i in similarities.argsort()[-2::-1]:
+    print(f"- {blogs[i]}")
