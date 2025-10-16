@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<body>
+<h1>Leaderboard</h1>
+<ol>
+{% for p in leaderboard %}
+<li>{{p.name}} - {{p.score}}</li>
+{% endfor %}
+</ol>
+<a href="/">Back</a>
+</body>
+</html>
