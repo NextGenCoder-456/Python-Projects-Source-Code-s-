@@ -1,0 +1,28 @@
+import os
+import docx2txt
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Load resumes from folder
+resumes = []
+names = []
+for file in os.listdir("resumes"):
+    if file.endswith(".docx"):
+        content = docx2txt.process(os.path.join("resumes", file))
+        resumes.append(content)
+        names.append(file)
+
+# Define the job description
+job_desc = open("job.txt").read()
+
+# Vectorize and compare
+vectorizer = TfidfVectorizer()
+all_docs = [job_desc] + resumes
+vectors = vectorizer.fit_transform(all_docs)
+similarity = cosine_similarity(vectors[0:1], vectors[1:]).flatten()
+
+# Output rankings
+ranked = sorted(zip(names, similarity), key=lambda x: x[1], reverse=True)
+print("📄 Resume Ranking:")
+for name, score in ranked:
+    print(f"{name} → Score: {score:.2f}")
