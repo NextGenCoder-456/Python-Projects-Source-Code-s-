@@ -1,0 +1,23 @@
+from tkinter import *
+
+def paint(event):
+    x1, y1 = (event.x - 3), (event.y - 3)
+    x2, y2 = (event.x + 3), (event.y + 3)
+    canvas.create_oval(x1, y1, x2, y2, fill=color.get(), outline=color.get())
+
+def change_color(c):
+    color.set(c)
+
+root = Tk()
+root.title("Paint App")
+
+color = StringVar(value='black')
+canvas = Canvas(root, width=400, height=400, bg='white')
+canvas.pack()
+
+colors = ['black', 'red', 'blue', 'green', 'purple']
+for c in colors:
+    Button(root, text=c, bg=c, command=lambda c=c: change_color(c)).pack(side=LEFT)
+
+canvas.bind("<B1-Motion>", paint)
+root.mainloop()
