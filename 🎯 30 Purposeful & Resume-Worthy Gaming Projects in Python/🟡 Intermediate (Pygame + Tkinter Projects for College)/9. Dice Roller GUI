@@ -1,0 +1,14 @@
+import tkinter as tk
+import random
+
+root = tk.Tk()
+root.title("Dice Roller")
+
+dice_label = tk.Label(root, text="", font=("Helvetica", 100))
+dice_label.pack()
+
+def roll_dice():
+    dice_label.config(text=str(random.randint(1, 6)))
+
+tk.Button(root, text="Roll Dice", font=("Arial", 20), command=roll_dice).pack()
+root.mainloop()
