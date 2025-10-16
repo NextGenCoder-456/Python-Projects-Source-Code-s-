@@ -1,0 +1,36 @@
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Pomodoro Timer")
+root.geometry("300x150")
+
+time_left = 1500  # 25 minutes
+running = False
+
+def update_timer():
+    global time_left
+    if running and time_left > 0:
+        minutes = time_left // 60
+        seconds = time_left % 60
+        label.config(text=f"{minutes:02d}:{seconds:02d}")
+        time_left -= 1
+        root.after(1000, update_timer)
+
+def start_timer():
+    global running
+    running = True
+    update_timer()
+
+def reset_timer():
+    global time_left, running
+    time_left = 1500
+    running = False
+    label.config(text="25:00")
+
+label = tk.Label(root, text="25:00", font=("Arial", 40))
+label.pack()
+
+tk.Button(root, text="Start", command=start_timer).pack(side=LEFT)
+tk.Button(root, text="Reset", command=reset_timer).pack(side=RIGHT)
+
+root.mainloop()
