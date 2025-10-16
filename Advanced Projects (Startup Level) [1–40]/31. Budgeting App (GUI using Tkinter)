@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class BudgetApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Budget Tracker")
+        self.budget = 0
+        self.expenses = []
+
+        # Entry for budget
+        tk.Label(root, text="Set Budget:").pack()
+        self.budget_entry = tk.Entry(root)
+        self.budget_entry.pack()
+
+        tk.Button(root, text="Set", command=self.set_budget).pack()
+
+        # Entry for expenses
+        tk.Label(root, text="Add Expense:").pack()
+        self.expense_name = tk.Entry(root)
+        self.expense_name.pack()
+        self.expense_amount = tk.Entry(root)
+        self.expense_amount.pack()
+
+        tk.Button(root, text="Add", command=self.add_expense).pack()
+        self.result = tk.Label(root, text="")
+        self.result.pack()
+
+    def set_budget(self):
+        try:
+            self.budget = float(self.budget_entry.get())
+            self.result.config(text=f"Budget set to ₹{self.budget}")
+        except ValueError:
+            messagebox.showerror("Error", "Enter valid number")
+
+    def add_expense(self):
+        try:
+            name = self.expense_name.get()
+            amt = float(self.expense_amount.get())
+            self.expenses.append((name, amt))
+            total = sum(x[1] for x in self.expenses)
+            self.result.config(text=f"Total Spent: ₹{total} / ₹{self.budget}")
+        except ValueError:
+            messagebox.showerror("Error", "Enter valid expense")
+
+root = tk.Tk()
+app = BudgetApp(root)
+root.mainloop()
