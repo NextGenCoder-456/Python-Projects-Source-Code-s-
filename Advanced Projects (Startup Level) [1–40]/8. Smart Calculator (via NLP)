@@ -1,0 +1,18 @@
+import re
+
+def calculate(text):
+    text = text.lower()
+    if 'add' in text or '+' in text:
+        nums = [int(s) for s in re.findall(r'\d+', text)]
+        return sum(nums)
+    elif 'multiply' in text or '*' in text:
+        result = 1
+        for n in re.findall(r'\d+', text):
+            result *= int(n)
+        return result
+    elif 'subtract' in text or '-' in text:
+        nums = [int(s) for s in re.findall(r'\d+', text)]
+        return nums[0] - sum(nums[1:])
+    return "Operation not supported."
+
+print(calculate("Add 12 and 7"))
