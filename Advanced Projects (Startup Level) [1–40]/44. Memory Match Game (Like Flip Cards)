@@ -1,0 +1,50 @@
+import random
+import os
+import time
+
+def display_board(board, revealed):
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if revealed[i][j]:
+                print(board[i][j], end=" ")
+            else:
+                print("*", end=" ")
+        print()
+
+def create_board():
+    symbols = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    pair = symbols * 2
+    random.shuffle(pair)
+    return [pair[i:i+4] for i in range(0, 16, 4)]
+
+def memory_game():
+    board = create_board()
+    revealed = [[False]*4 for _ in range(4)]
+
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        display_board(board, revealed)
+
+        try:
+            r1, c1 = map(int, input("Enter first card (row col): ").split())
+            r2, c2 = map(int, input("Enter second card (row col): ").split())
+        except:
+            print("❌ Invalid input")
+            continue
+
+        if (r1, c1) == (r2, c2):
+            print("⚠️ Same card chosen twice!")
+            continue
+
+        revealed[r1][c1], revealed[r2][c2] = True, True
+        display_board(board, revealed)
+        time.sleep(1)
+
+        if board[r1][c1] != board[r2][c2]:
+            revealed[r1][c1], revealed[r2][c2] = False, False
+
+        if all(all(row) for row in revealed):
+            print("🎉 You matched all cards!")
+            break
+
+memory_game()
