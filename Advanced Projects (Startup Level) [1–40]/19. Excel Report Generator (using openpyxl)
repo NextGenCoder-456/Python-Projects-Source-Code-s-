@@ -1,0 +1,16 @@
+import openpyxl
+
+wb = openpyxl.Workbook()
+sheet = wb.active
+sheet.title = "Report"
+
+# Headings
+sheet.append(["Name", "Marks", "Grade"])
+
+# Dummy data
+data = [("Ankush", 88, "A"), ("Ravi", 77, "B+")]
+for row in data:
+    sheet.append(row)
+
+wb.save("Student_Report.xlsx")
+print("Excel file saved.")
