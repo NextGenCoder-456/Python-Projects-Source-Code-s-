@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+from git import Repo
+from collections import Counter
+from datetime import datetime
+
+repo_path = '.'  # path to your git repo
+repo = Repo(repo_path)
+commits = list(repo.iter_commits())
+
+dates = [datetime.fromtimestamp(commit.committed_date).date() for commit in commits]
+count_by_day = Counter(dates)
+
+x = list(count_by_day.keys())
+y = list(count_by_day.values())
+
+plt.plot(x, y)
+plt.title("Git Commits Over Time")
+plt.xlabel("Date")
+plt.ylabel("Commits")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+Note: Install: pip install GitPython
